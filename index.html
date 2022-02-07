@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    
+  </head>
+  <body>
+    <div class="background-img"></div>
+    <div class="wrapper">
+      <!-- header section -->
+      <div class="header">
+        <div class="logo">TODO</div>
+       <label for="" class="icon">
+         <input type="checkbox"  id="theme">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+          <path
+            fill="#FFF"
+            fill-rule="evenodd"
+            d="M13 21a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-5.657-2.343a1 1 0 010 1.414l-2.121 2.121a1 1 0 01-1.414-1.414l2.12-2.121a1 1 0 011.415 0zm12.728 0l2.121 2.121a1 1 0 01-1.414 1.414l-2.121-2.12a1 1 0 011.414-1.415zM13 8a5 5 0 110 10 5 5 0 010-10zm12 4a1 1 0 110 2h-3a1 1 0 110-2h3zM4 12a1 1 0 110 2H1a1 1 0 110-2h3zm18.192-8.192a1 1 0 010 1.414l-2.12 2.121a1 1 0 01-1.415-1.414l2.121-2.121a1 1 0 011.414 0zm-16.97 0l2.121 2.12A1 1 0 015.93 7.344L3.808 5.222a1 1 0 011.414-1.414zM13 0a1 1 0 011 1v3a1 1 0 11-2 0V1a1 1 0 011-1z"
+          />
+        </svg>
+       </label>
+      </div>
+      <!-- header section ends -->
+      <!-- add item data -->
+      <div class="container-for-input-data">
+        <span class="check"> </span>
+        <div class="form">
+          <form action="" method="get">
+            <input type="text" autocomplete="off" name="item" class="additem" placeholder="Create a new todo..." autofocus />
+          </form>
+        </div>
+      </div>
+      <!-- add item data section ends. -->
+
+      <!-- todo list item section -->
+      <div class="todo-items-list-wrapper">
+        <div class="items"></div>
+
+        <div class="todo-item-wrapper show-dialog">
+          <div><span class="number-of-items">0</span> items left</div>
+           <div class="delete">Clear Completed</div>
+       </div>
+      </div>
+      <!-- last section -->
+    <div class="todo-item-wrapper choices">
+      <div class="active">All</div>
+       <div class="showactive">Active</div>
+       <div class="completed">Completed</div>
+   </div>
+    </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+<script src="javascript/jquery.growl.js" type="text/javascript"></script>
+<link href="stylesheets/jquery.growl.css" rel="stylesheet" type="text/css" />
+    <script>
+             $('#theme').on('change',(e)=>{
+                if($("#theme").is(":checked")){
+                  $('body').addClass("theme")
+                  $('.todo-items-list-wrapper').addClass('theme')
+                  $('.todo-item-wrapper').css('color','black')
+                  $('.todo-items-list-wrapper label').css('border-bottom','1px solid black')
+                  $('.show-dialog').addClass("theme")
+                  $('.checks').css('border','1px solid hsl(236, 9%, 61%)')
+                  $('.choices').addClass("theme")
+                  $('.todo-items-list-wrapper').css('box-shadow',"rgba(0, 0, 0, 0.35) 0px 5px 15px")
+                  $('.choices').css('box-shadow'," rgba(0, 0, 0, 0.35) 0px 5px 15px")
+                  $('#theme').next().remove()
+                  let div='<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"><path fill="#FFF" fill-rule="evenodd" d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z"/></svg>'
+                  $('.icon').append(div);
+                  $('.container-for-input-data').addClass('theme');
+                  $('.additem').css('color','black')
+                  $('.background-img').css('background-image','url("./images/bg-desktop-light.jpg")')
+                  
+                }
+
+                else{
+                  $('body').removeClass('theme')
+                  $('.todo-items-list-wrapper').removeClass('theme')
+                  $('.todo-item-wrapper').css('color','hsl(0, 0%, 98%)')
+                  $(' .todo-items-list-wrapper label').css('border-bottom','1px solid lightgray')
+                  $('.show-dialog').removeClass("theme")
+                  $('.choices').removeClass("theme");
+                  $('#theme').next().remove()
+                  let div='<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"><path fill="#FFF" fill-rule="evenodd" d="M13 21a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-5.657-2.343a1 1 0 010 1.414l-2.121 2.121a1 1 0 01-1.414-1.414l2.12-2.121a1 1 0 011.415 0zm12.728 0l2.121 2.121a1 1 0 01-1.414 1.414l-2.121-2.12a1 1 0 011.414-1.415zM13 8a5 5 0 110 10 5 5 0 010-10zm12 4a1 1 0 110 2h-3a1 1 0 110-2h3zM4 12a1 1 0 110 2H1a1 1 0 110-2h3zm18.192-8.192a1 1 0 010 1.414l-2.12 2.121a1 1 0 01-1.415-1.414l2.121-2.121a1 1 0 011.414 0zm-16.97 0l2.121 2.12A1 1 0 015.93 7.344L3.808 5.222a1 1 0 011.414-1.414zM13 0a1 1 0 011 1v3a1 1 0 11-2 0V1a1 1 0 011-1z"/></svg>'
+                  $('.icon').append(div);
+                  $('.container-for-input-data').removeClass('theme');
+                  $('.additem').css('color','white')
+                  $('.background-img').css('background-image','url("./images/bg-desktop-dark.jpg")')
+                }
+             })
+
+              let items={
+                item:[]
+              };
+
+              $(window).on('load',(e)=>{
+                console.log('loaded')
+                e.preventDefault()
+                let getItems=JSON.parse(window.localStorage.getItem('list'));
+                let items=getItems.item;
+                items.forEach(str => {
+                  let label=`<label>  <div class="todo-item-wrapper">
+                          <input type="checkbox">
+                         <span class="checks"></span>
+                        <div>${str}</div>
+                      </div> </lable>`
+                      document.querySelector('.items').innerHTML+=label;
+                });
+                $('.number-of-items').text(items.length)
+
+                
+              })
+
+              $('form').on('submit',(e)=>{
+                 e.preventDefault();
+                let item=e.target[0].value;
+                  items.item.push(item);
+                  let str=JSON.stringify(items);
+                  window.localStorage.setItem('list',str);
+                 let label=`<label>  <div class="todo-item-wrapper">
+                          <input type="checkbox">
+                         <span class="checks"></span>
+                        <div>${item}</div>
+                      </div> </lable>`
+                      document.querySelector('.items').innerHTML+=label;
+
+                e.target[0].value="";
+                $('.number-of-items').text(items.item.length)
+              })
+              $('.showactive').on('click',()=>{
+                let getItems=JSON.parse(window.localStorage.getItem('list'));
+                let items=getItems.item;
+                $('.items label').each(function(i, obj) {
+                  if(obj.childNodes[1].childNodes[1].checked)
+                       obj.classList.add('dodisplaynone')
+                  });
+
+              })
+
+              $('.completed').on('click',()=>{
+                let getItems=JSON.parse(window.localStorage.getItem('list'));
+                let items=getItems.item;
+                $('.items label').each(function(i, obj) {
+                  if(obj.childNodes[1].childNodes[1].checked)
+                       obj.classList.remove('dodisplaynone')
+                  });
+
+              })
+          
+    </script>
+  </body>
+</html>
